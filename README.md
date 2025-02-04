@@ -19,12 +19,12 @@ Additional Interactive Elements:
 Other interactive features include a "Read More" toggle in the home section for additional content and a rating system where users can interact with elements like hearts or stars (if implemented), enhancing user engagement.
 
 Overall, the Coffee Shop App provides a complete solution that combines modern web design, interactive functionality, and a seamless user experience. It is a showcase project that leverages HTML, CSS, and JavaScript to deliver a visually appealing and functionally robust application for a coffee shop.
+
 ![slika1](https://github.com/user-attachments/assets/33f1ddd2-9b9c-491a-9e06-e34767750a00)
 
 ![slika2](https://github.com/user-attachments/assets/17e9aee8-7770-42df-97ac-22ff68891871)
 
 ![slika3](https://github.com/user-attachments/assets/454af728-22be-4921-8c09-19ba243767d9)
-
 
 ![slika4](https://github.com/user-attachments/assets/1f3e12ca-b6c4-4958-8d5a-aa0759e3650f)
 
@@ -39,7 +39,6 @@ Overall, the Coffee Shop App provides a complete solution that combines modern w
 ![slika9](https://github.com/user-attachments/assets/f23dab7b-fd3f-4e1d-92f9-5efe02389ab0)
 
 ![slika10](https://github.com/user-attachments/assets/6e463bb3-c924-4b77-9367-a758d3406962)
-
 
 ![slika11](https://github.com/user-attachments/assets/80a17340-5ce6-4b5b-a0e4-eef414146400)
 
