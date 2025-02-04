@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complete responsive coffee shop website design</title>
+
+    <!--font awesome cdn link-->
+    <link rel = "stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <!--custom css file link-->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+
+    <!--header section starts-->
+    <header class = "header">
+        <a href = "#" class = "logo">
+            <img src = "images/logo.jpg" alt = "logo">
+        </a>
+
+        <nav class = "navbar">
+            <a href = "#home">home</a>
+            <a href = "#about">about</a>
+            <a href = "#menu">menu</a>
+            <a href = "#products">products</a>
+            <a href = "#review">review</a>
+            <a href = "#contact">contact</a>
+            <a href = "#blogs">blogs</a>
+            <a href = "#reservation">reservation</a>
+            <a href = "#footer">Links to social profiles</a>
+        </nav>
+   
+
+
+      <div class = "icons">
+           <div class = "fas fa-search" id = "search-btn"></div>
+           <div class = "fas fa-shopping-cart" id = "cart-btn"></div>
+           <div class = "fas fa-bars" id = "menu-btn"></div>
+      </div>
+
+
+      <div class = "search-form">
+        <input type = "search" id="search-box" placeholder = "search here...">
+        <label for="search-box" class="fas fa-search"></label>
+      </div>
+
+
+      <div class="cart-items-container">
+        
+        <div id="cart-items"></div> <!-- Ovdje će se prikazivati proizvodi u košarici -->
+        <div id="total-price">Total: €0.00</div>
+
+        <a href="#" class="btn" onclick="showCheckoutPopup(event)">checkout now</a>
+      </div>
+
+
+      <!--//////////////////////////////////-->
+      
+      <!--//////////////////////////////////-->
+      
+
+    </header>
+    <!--header section ends-->
+
+<!-- Checkout Popup (Hidden by default) -->
+<div id="checkout-popup" class="popup-overlay">
+    <div class="popup-content">
+        <h2>Enter your Card Details</h2>
+        <form id="checkout-form">
+            <br>
+            <label for="card-number">Card Number:</label>
+            <input type="text" id="card-number" placeholder="Enter your card number" required>
+
+            <label for="card-expiry">Expiry Date:</label>
+            <input type="text" id="card-expiry" placeholder="MM/YY" required>
+
+            <label for="card-cvc">CVC:</label>
+            <input type="text" id="card-cvc" placeholder="CVC" required>
+
+            <button type="button" class="btn" onclick="processPayment()">Pay</button>
+        </form>
+        <button class="close-btn" onclick="closeCheckoutPopup()">Close</button>
+    </div>
+</div>
+    <!--home section starts -->
+   <section class="home" id="home">
+       <div class = "content">
+            <h3>fresh coffee in the morning</h3>
+            <p>At our Coffee shop, we believe that every cup of coffee 
+                tells a story. Whether you’re starting your day or taking a break, 
+                we offer a variety of expertly brewed beverages that bring comfort
+                 and warmth. </p>
+                 <p class="long-text" style="display: none;">From rich espressos to creamy lattes, every cup is made with love and the finest ingredients.
+                 Our cozy atmosphere invites you to relax, chat with friends, or enjoy a peaceful moment by yourself.                    
+                 We’re not just a coffee shop – we’re a place where memories are made, one cup at a time. </p>
+                 <a href="#" class="btn" onclick="toggleText(event)">Learn more</a>   
+               <a href = "#menu" class = "btn">get yours now</a> <!-- This link now points to the menu section -->
+       </div>
+   </section>
+   <!--home section ends-->
+
+
+   <!--about section starts-->
+   <section class = "about" id = "about">
+       <h1 class = "heading"><span>about</span> us</h1>
+
+       <div class = "row">
+
+        <div class = "image">
+            <img src = "images/about-img.jpg" alt = "slika">
+        </div>
+        <div class = "content">
+            <h3>what makes our coffee special?</h3>
+            <p><span>At our coffee shop, we are passionate about delivering 
+                an exceptional coffee experience, and here's what sets us 
+                apart:</span></p>
+            <p><span>Premium Quality Beans:</span> We source only the finest, sustainably grown 
+                coffee beans from trusted farmers around the world. Each bean is 
+                carefully selected for its unique flavor profile, ensuring every 
+                cup is rich and full of character.</p>
+            <p><span>Expert Craftsmanship:</span> Our baristas are true coffee artisans,
+             trained to perfection in brewing techniques that bring out the 
+             best in each blend. From pour-overs to espresso shots, every 
+             drink is crafted with precision and care.</p>
+                <p class="long-text" style="display: none;">
+                    <span>Freshness Matters: </span>
+                    We roast our beans in small batches, ensuring optimal freshness 
+                    and flavor. We believe in the magic that happens when coffee is 
+                    enjoyed at its peak, and that's why we take pride in offering 
+                    freshly brewed coffee, every time. <br><br>
+                   <span>Sustainability at Heart:</span> We're committed to supporting ethical 
+                    farming practices and reducing our environmental footprint. By 
+                    choosing fair trade, organic, and eco-friendly products, we 
+                    contribute to a better future for the planet and the farmers who 
+                    grow our coffee. <br><br>
+                    <span>Personalized Experience:</span> No two coffee lovers are the same, 
+                        which is why we offer a wide range of customizations. Whether 
+                        you prefer your coffee strong or smooth, hot or iced, we’re here 
+                        to craft a cup that’s perfect for you.</p>
+                <a href="#" class="btn" onclick="toggleText(event)">Learn more</a>   
+                
+        </div>
+
+       </div>
+   </section>
+   <!--about section ends-->
+
+
+   <!--menu section starts-->
+   <section class = "menu" id="menu">
+    <h1 class = "heading">our <span> menu</span> <br> tasty <span> and healthy</span></h1>
+    
+    <div class = "box-container">
+
+        <div class = "box">
+            <img src = "images/espresso.jpg" alt = "slika">
+            <h3>Espresso</h3>
+            <div class = "price">$2.50 <span> 3.50</span></div>
+            <a href="#" class="btn add-to-cart">Add to cart</a>
+            <p class="cart-count" style="display:none;">Added to cart: <span class="count">0</span> times
+            <button class="remove-from-cart" style="display:none;">Remove</button></p>
+        </div>
+
+        <div class = "box">
+            <img src = "images/americano.jpg" alt = "slika">
+            <h3>Americano</h3>
+            <div class = "price">$3.50 <span> 4.50</span></div>
+            <a href="#" class="btn add-to-cart">Add to cart</a>
+            <p class="cart-count" style="display:none;">Added to cart: <span class="count">0</span> times
+                <button class="remove-from-cart" style="display:none;">Remove</button></p>
+        </div>
+
+        <div class = "box">
+            <img src = "images/capuccino.jpg" alt = "slika">
+            <h3>Capuccino</h3>
+            <div class = "price">$4.00 <span> 5.00</span></div>
+            <a href="#" class="btn add-to-cart">Add to cart</a>
+            <p class="cart-count" style="display:none;">Added to cart: <span class="count">0</span> times
+            <button class="remove-from-cart" style="display:none;">Remove</button></p>
+        </div>
+
+        <div class = "box">
+            <img src = "images/latte.jpg" alt = "slika">
+            <h3>Latte</h3>
+            <div class = "price">$4.50 <span> 5.50</span></div>
+            <a href="#" class="btn add-to-cart">Add to cart</a>
+            <p class="cart-count" style="display:none;">Added to cart: <span class="count">0</span> times
+            <button class="remove-from-cart" style="display:none;">Remove</button></p>
+        </div>
+
+        <div class = "box">
+            <img src = "images/macchiato.jpg" alt = "slika">
+            <h3>Macchiato</h3>
+            <div class = "price">$3.50 <span> 4.50</span></div>
+            <a href="#" class="btn add-to-cart">Add to cart</a>
+            <p class="cart-count" style="display:none;">Added to cart: <span class="count">0</span> times
+            <button class="remove-from-cart" style="display:none;">Remove</button></p>
+        </div>
+
+        <div class = "box">
+            <img src = "images/flat-white.jpg" alt = "slika">
+            <h3>Flat white</h3>
+            <div class = "price">$4.50 <span> 5.00</span></div>
+            <a href="#" class="btn add-to-cart">Add to cart</a>
+            <p class="cart-count" style="display:none;">Added to cart: <span class="count">0</span> times
+            <button class="remove-from-cart" style="display:none;">Remove</button></p>
+        </div>
+
+        <div class = "box">
+            <img src = "images/mocha.jpg" alt = "slika">
+            <h3>Mocha</h3>
+            <div class = "price">$5.00 <span> 5.50</span></div>
+            <a href="#" class="btn add-to-cart">Add to cart</a>
+            <p class="cart-count" style="display:none;">Added to cart: <span class="count">0</span> times
+            <button class="remove-from-cart" style="display:none;">Remove</button></p>
+        </div>
+   
+        <div class = "box">
+            <img src = "images/affogato.jpg" alt = "slika">
+            <h3>Affogato</h3>
+            <div class = "price">$5.50 <span> 6.00</span></div>
+            <a href="#" class="btn add-to-cart">Add to cart</a>
+            <p class="cart-count" style="display:none;">Added to cart: <span class="count">0</span> times
+            <button class="remove-from-cart" style="display:none;">Remove</button></p>
+        </div>
+
+        <div class = "box">
+            <img src = "images/cold-brew.jpg" alt = "slika">
+            <h3>Cold brew</h3>
+            <div class = "price">$4.50 <span> 5.00</span></div>
+            <a href="#" class="btn add-to-cart">Add to cart</a>
+            <p class="cart-count" style="display:none;">Added to cart: <span class="count">0</span> times
+            <button class="remove-from-cart" style="display:none;">Remove</button></p>
+        </div>
+
+        <div class = "box">
+            <img src = "images/iced-coffee.jpg" alt = "slika">
+            <h3>Iced coffee</h3>
+            <div class = "price">$3.50 <span> 4.00</span></div>
+            <a href="#" class="btn add-to-cart">Add to cart</a>
+            <p class="cart-count" style="display:none;">Added to cart: <span class="count">0</span> times
+            <button class="remove-from-cart" style="display:none;">Remove</button></p>
+        </div>
+
+        <div class = "box">
+            <img src = "images/cortado.jpg" alt = "slika">
+            <h3>Cortado</h3>
+            <div class = "price">$3.50 <span> 4.00</span></div>
+            <a href="#" class="btn add-to-cart">Add to cart</a>
+            <p class="cart-count" style="display:none;">Added to cart: <span class="count">0</span> times
+            <button class="remove-from-cart" style="display:none;">Remove</button></p>
+        </div>
+
+        <div class = "box">
+            <img src = "images/ristretto.jpg" alt = "slika">
+            <h3>Ristretto</h3>
+            <div class = "price">$2.50 <span> 3.00</span></div>
+            <a href="#" class="btn add-to-cart">Add to cart</a>
+            <p class="cart-count" style="display:none;">Added to cart: <span class="count">0</span> times
+            <button class="remove-from-cart" style="display:none;">Remove</button></p>
+        </div>        
+
+        <div class = "box">
+            <img src = "images/turkish-coffee.jpg" alt = "slika">
+            <h3>Turkish coffee</h3>
+            <div class = "price">$3.50 <span> 4.00</span></div>
+            <a href="#" class="btn add-to-cart">Add to cart</a>
+            <p class="cart-count" style="display:none;">Added to cart: <span class="count">0</span> times
+            <button class="remove-from-cart" style="display:none;">Remove</button></p>
+        </div>
+
+        <div class = "box">
+            <img src = "images/frappuccino.jpg" alt = "slika">
+            <h3>Frappuccino</h3>
+            <div class = "price">$5.00 <span> 5.50</span></div>
+            <a href="#" class="btn add-to-cart">Add to cart</a>
+            <p class="cart-count" style="display:none;">Added to cart: <span class="count">0</span> times
+            <button class="remove-from-cart" style="display:none;">Remove</button></p>
+        </div>
+
+    </div>
+   </section>
+   <!--menu section ends-->
+
+   <!--coffee bean section starts-->
+<section class = "menu" id="menu">
+    <h1 class = "heading">our <span> coffee bean menu</span></h1>
+    <div class = "box-container">
+
+        <div class = "box">
+            <img src = "images/cart-item-1.jpg" alt = "slika">
+            
+            <h3>raw green beans</h3>
+            <h2>(200 grams)</h2>
+            <br><br>
+            <div class = "price">$6.99 <span> 10.99</span></div>
+            <a href="#" class="btn add-to-cart">Add to cart</a>
+            <p class="cart-count" style="display:none;">Added to cart: <span class="count">0</span> times
+            <button class="remove-from-cart" style="display:none;">Remove</button></p>
+        </div>
+
+        <div class = "box">
+            <img src = "images/cart-item-2.jpg" alt = "slika">
+            <h3>light roasted coffee beans</h3>
+            <h2>(200 grams)</h2>
+            <div class = "price">$8.99 <span> 12.99</span></div>
+            <a href="#" class="btn add-to-cart">Add to cart</a>
+            <p class="cart-count" style="display:none;">Added to cart: <span class="count">0</span> times
+            <button class="remove-from-cart" style="display:none;">Remove</button></p>
+        </div>
+
+        <div class = "box">
+            <img src = "images/cart-item-3.jpg" alt = "slika">
+            <h3>mixed (raw and roasted) coffee beans</h3>
+            <h2>(200 grams)</h2>
+            <div class = "price">$8.99 <span> 12.99</span></div>
+            <a href="#" class="btn add-to-cart">Add to cart</a>
+            <p class="cart-count" style="display:none;">Added to cart: <span class="count">0</span> times
+            <button class="remove-from-cart" style="display:none;">Remove</button></p>
+        </div>
+
+        <div class = "box">
+            <img src = "images/cart-item-4.jpg" alt = "slika">
+            <h3>roasted coffee beans</h3>
+            <h2>(200 grams)</h2>
+            <div class = "price">$9.99 <span> 13.99</span></div>
+            <a href="#" class="btn add-to-cart">Add to cart</a>
+            <p class="cart-count" style="display:none;">Added to cart: <span class="count">0</span> times
+            <button class="remove-from-cart" style="display:none;">Remove</button></p>
+        </div>
+
+    </div>
+   </section>
+   <!--coffee bean section ends-->
+
+
+<!--section products starts-->
+<section class="products" id="products">
+    <h1 class="heading">our<span> products</span></h1>
+
+    <div class="box-container">
+
+        <!-- Product 1 -->
+        <div class="box">
+            <div class="icons">
+                <a href="#" class="fas fa-shopping-cart"></a>
+                
+                <!-- Pozivanje funkcije za uvećanje slike -->
+                <a href="#" class="fas fa-eye" onclick="zoomImage(event, 'productImage1')"></a>
+            </div>
+            <div class="image">
+                <img src="images/product-1.jpg" alt="slika" class="productImage" id="productImage1">
+                
+            </div>
+            <div class="content">
+                <h3>fresh coffee </h3>
+                <h3>nicaragua</h3>
+                <br>
+                <h2 style="color: white;">(500 grams)</h2>
+
+                <div class="stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
+                </div>
+                <div class="price">$13.99 <span>$20.99</span></div>
+            </div>
+        </div>
+
+        <!-- Product 2 -->
+        <div class="box">
+            <div class="icons">
+                <a href="#" class="fas fa-shopping-cart"></a>
+                
+                <!-- Pozivanje funkcije za uvećanje slike -->
+                <a href="#" class="fas fa-eye" onclick="zoomImage(event, 'productImage2')"></a>
+            </div>
+            <div class="image">
+                <img src="images/product-2.jpg" alt="slika" class="productImage" id="productImage2">
+                
+            </div>
+            <div class="content">
+                <h3>fresh coffee</h3>
+                <h3>colombia</h3>
+                <br>
+                <h2 style="color: white;">(500 grams)</h2>
+
+                <div class="stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
+                </div>
+                <div class="price">$10.99 <span>$17.99</span></div>
+            </div>
+        </div>
+
+        <!-- Product 3 -->
+        <div class="box">
+            <div class="icons">
+                <a href="#" class="fas fa-shopping-cart"></a>
+                
+                <!-- Pozivanje funkcije za uvećanje slike -->
+                <a href="#" class="fas fa-eye" onclick="zoomImage(event, 'productImage3')"></a>
+            </div>
+            <div class="image">
+                <img src="images/product-3.jpg" alt="slika" class="productImage" id="productImage3">
+                
+            </div>
+            <div class="content">
+                <h3>fresh coffee</h3>
+                <h3>caffeine & daydreaming</h3>
+                <br>
+                <h2 style="color: white;">(500 grams)</h2>
+
+                <div class="stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
+                </div>
+                <div class="price">$9.99 <span>$15.99</span></div>
+            </div>
+        </div>
+
+    </div>
+</section>
+<!--section products end-->
+
+                
+
+<!--review section-->
+<section class = "review" id = "review">
+    <h1 class = "heading"> customer's<span> review</span></h1>
+
+    <div class = "box-container">
+
+       <div class = "box">
+         <img src = "images/quote-img.jpg" alt = "quote" class="quote">
+         <p>The best coffee I've ever had! Smooth, rich, and just the right
+             amount of kick. I'll definitely be coming back for more.</p>
+            <img src = "images/pic-1.jpg" class="user" alt="user">
+            <h3>William Davis</h3>
+            <div class = "stars">
+                <i class = "fas fa-star"></i>
+                <i class = "fas fa-star"></i>
+                <i class = "fas fa-star"></i>
+                <i class = "fas fa-star"></i>
+                <i class = "fas fa-star-half-alt"></i>
+            </div>
+       </div>
+
+       <div class = "box">
+        <img src = "images/quote-img.jpg" alt = "quote" class="quote">
+        <p>I love the cozy atmosphere and the personalized drinks. The
+             baristas really know their stuff and always make my day with
+              a perfect cup of coffee.</p>
+           <img src = "images/pic-2.jpg" class="user" alt="user">
+           <h3>Isabella Clark</h3>
+           <div class = "stars">
+               <i class = "fas fa-star"></i>
+               <i class = "fas fa-star"></i>
+               <i class = "fas fa-star"></i>
+               <i class = "fas fa-star"></i>
+               <i class = "fas fa-star-half-alt"></i>
+           </div>
+      </div>
+
+      <div class = "box">
+        <img src = "images/quote-img.jpg" alt = "quote" class="quote">
+        <p>A hidden gem! Amazing coffee and friendly service. I appreciate 
+            their focus on sustainability and ethical sourcing.</p>
+           <img src = "images/pic-3.jpg" class="user" alt="user">
+           <h3>Noah Martinez</h3>
+           <div class = "stars">
+               <i class = "fas fa-star"></i>
+               <i class = "fas fa-star"></i>
+               <i class = "fas fa-star"></i>
+               <i class = "fas fa-star"></i>
+               <i class = "fas fa-star-half-alt"></i>
+           </div>
+      </div>
+
+    </div>
+
+</section>
+<!--review section end-->
+
+
+
+<!--contact section starts-->
+<section class="contact" id="contact">
+    <h1 class="heading"><span>contact</span> us</h1>
+    <div class="row">
+        <!-- Google mapa s linkom -->
+        <iframe class="map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d11569.69732870193!2d16.49017649999999!3d43.535195900000026!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x13355faa847275fd%3A0xc892b6e54657c122!2sGospin%20Otok!5e0!3m2!1shr!2shr!4v1738433337395!5m2!1shr!2shr" 
+        width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+        <form id="contact-form">
+            <h3>Get in touch</h3>
+            <br>
+            <div class = "text"><h3 style="font-size: 16px;"> We will contact you in a few days via mobile phone or email:</h3></div>
+            <div class="inputBox">
+                <span class="fas fa-user"></span>
+                <input type="text" placeholder="Name" id="name">
+            </div>
+            <div class="inputBox">
+                <span class="fas fa-envelope"></span>
+                <input type="email" placeholder="Email" id="email">
+            </div>
+            <div class="inputBox">
+                <span class="fas fa-phone"></span>
+                <input type="number" placeholder="Phone" id="phone">
+            </div>
+            <div class="text">
+                <h3 style="font-size: 16px;">Or if you want to personally send us a message immediately via Gmail:</h3>
+            </div>
+            <br>
+            <input type="submit" value="Contact Now" class="btn">
+            <div id="contact-info" class="hidden">
+                <p>Email: <a href="mailto:lana.danolicc@gmail.com">lana.danolicc@gmail.com</a></p>
+            </div>
+        </form>
+    </div>
+</section>
+
+<!--contact section ends-->
+
+
+<!--blogs section starts-->
+<section class = "blogs" id = "blogs">
+    <h1 class = "heading"> our<span> blogs</span></h1>
+
+    <div class = "box-container">
+
+        <div class = "box">
+            <div class = "image">
+                <img src = "images/blog-1.jpg" alt = "picture">
+            </div>
+            <div class = "content">
+                <a href = "#" class = "title">Why Coffee is More Than Just a Drink</a>
+                <span>by admin / 22nd jan, 2025</span>
+                <p class="short-text">Coffee is one of the most beloved beverages 
+                    in the world. Whether you’re starting your day, taking a break 
+                    at work, or meeting friends at your favorite café, coffee plays 
+                    a big role in our daily routines. But it's more than just a 
+                    morning pick-me-up; it's an experience.</p>
+        <p class="long-text" style="display: none;">From the first sip to the last 
+            drop, coffee offers a moment of comfort and connection. The rich aroma,
+             the warmth of the cup in your hands, and the variety of flavors all 
+             come together to make coffee special. Whether you enjoy it black, with
+              milk, or as an elaborate latte, there’s a coffee for everyone.
+        <br><br>What makes coffee even more amazing is its versatility. 
+        There’s espresso for those who like it bold, cappuccinos for the 
+        creamy lovers, iced coffee for a refreshing twist, and so much more.
+         And it’s not just about the drink—it’s about the social connections
+          made over a cup of coffee, the creativity that flows, and the 
+          calming ritual of brewing it.
+        <br><br>So, next time you grab a cup, take a moment to enjoy the simple pleasure that is coffee. After all, it’s more than just a drink; it’s a way of life.</p>
+        <a href="#" class="btn" onclick="toggleText(event)">Read more</a>
+            </div>
+        </div>
+
+        <div class = "box">
+            <div class = "image">
+                <img src = "images/blog-2.jpg" alt = "picture">
+            </div>
+            <div class = "content">
+                <a href = "#" class = "title">The Art of Brewing the Perfect Coffee</a>
+                <span>by admin / 1st feb, 2025</span>
+                <p class="short-text">Brewing the perfect cup of coffee isn’t just about the 
+                    beans—it’s an art. From the grind size to the water temperature, 
+                    every detail matters to get that perfect cup. Whether you're using 
+                    a French press, an espresso machine, or just a classic drip coffee 
+                    maker, there’s a method for every coffee lover.</p>
+        <p class="long-text" style="display: none;">Freshly ground beans are key to 
+            a great cup. The grind size should match the brewing method to ensure 
+            the coffee’s full potential is unlocked. For example, espresso 
+            requires a fine grind, while a French press works best with a 
+            coarser grind.
+           <br><br> Water temperature also plays a crucial role. Too hot,
+            and it can burn the coffee; too cold, and the coffee may taste
+             weak. The ideal range is between 195°F and 205°F for most 
+             brewing methods.
+            <br><br>Experimenting with different beans and brewing 
+            techniques is the fun part. From single-origin beans that 
+            tell a unique story to blends that offer complexity, each 
+            cup of coffee has its own personality. So, take your time, 
+            learn, and enjoy the process of brewing. After all, the 
+            perfect cup of coffee is the one that makes you smile.</p>
+        <a href="#" class="btn" onclick="toggleText(event)">Read more</a>
+            </div>
+        </div>
+
+        <div class = "box">
+            <div class = "image">
+                <img src = "images/blog-3.jpg" alt = "picture">
+            </div>
+            <div class = "content">
+                <a href = "#" class = "title">Exploring Coffee Around the World</a>
+                <span>by admin / 2nd feb, 2025</span>
+                <p class="short-text">Coffee is more than just a beverage; it's a 
+                    global tradition. Every country has its own way of preparing 
+                    and enjoying coffee, adding unique flavors and experiences to the 
+                    mix. Whether you're sipping a rich Italian espresso or a refreshing
+                     cold brew from the U.S., the world of coffee is full of diversity.
+                    </p>
+        <p class="long-text" style="display: none;">In Italy, espresso is the star, 
+            often served in a small cup as a quick pick-me-up during the day. 
+            Meanwhile, in Turkey, coffee is made with finely ground beans and 
+            simmered slowly for a thick, rich drink, often served with a sweet 
+            treat. Over in Ethiopia, the birthplace of coffee, the traditional 
+            coffee ceremony is a time for reflection and connection, with the 
+            beans roasted right before brewing.
+            <br><br>
+            From the strong, bold cups of the Middle East to the light, 
+            fruity blends of Central America, coffee offers a taste of 
+            different cultures. So next time you sip your coffee, think
+             about the journey it’s made, and take a moment to enjoy the flavors of the world in your cup.</p>
+        <a href="#" class="btn" onclick="toggleText(event)">Read more</a>
+            </div>
+        </div>
+
+    </div>
+</section>
+<!--blogs section ends-->
+
+
+<!--///////////////////////////////////////////////////////////////////-->
+<section class="reservation" id="reservation">
+    <h1 class="heading">Reserve a <span>Table</span></h1>
+    <div class="form-container">
+        <form id="reservation-form">
+            <div class="inputBox">
+                <label for="name"><h2 style="color: white;">Full Name:</h2></label>
+                <input type="text" id="name" placeholder="Enter your full name" required>
+            </div>
+            <div class="inputBox">
+                <label for="email"><h2 style="color: white;">Email:</h2></label>
+                <input type="email" id="email" placeholder="Enter your email" required>
+            </div>
+            <div class="inputBox">
+                <label for="phone"><h2 style="color: white;">Phone Number:</h2></label>
+                <input type="text" id="phone" placeholder="Enter your phone number" required>
+            </div>
+            <div class="inputBox">
+                <label for="reservation-date"><h2 style="color: white;">Reservation Date:</h2></label>
+                <input type="date" id="reservation-date" required>
+            </div>
+            <div class="inputBox">
+                <label for="reservation-time"><h2 style="color: white;">Reservation Time:</h2></label>
+                <input type="time" id="reservation-time" required>
+            </div>
+            <div class="inputBox">
+                <label for="table-type"><h2 style="color: white;">Choose Table Type:</h2></label>
+                <select id="table-type" required>
+                    <option value="outside">Outside (on the terrace)</option>
+                    <option value="inside">Inside (in the café)</option>
+                    <option value="bar">At the Bar</option>
+                </select>
+            </div>
+            <button type="submit" class="btn">Reserve Now</button>
+        </form>
+    </div>
+</section>
+
+<!-- Confirmation Popup -->
+<div id="confirmation-popup" class="popup-overlay">
+    <div class="popup-content">
+        <h2>Reservation Confirmed</h2>
+        <p>Your reservation has been successfully made!</p>
+        <button class="close-btn" onclick="closePopup()">Close</button>
+    </div>
+</div>
+<!--//////////////////////////////////////////////////////////////////-->
+
+
+
+
+<!--footer section starts here-->
+<section class = "footer" id="footer">
+    <div class = "share">
+        <div class="share">
+            <a href="https://www.facebook.com" target="_blank" class="fab fa-facebook-f"></a>
+            <a href="https://twitter.com" target="_blank" class="fab fa-twitter"></a>
+            <a href="https://www.instagram.com/" target="_blank" class="fab fa-instagram"></a>
+            <a href="https://www.linkedin.com" target="_blank" class="fab fa-linkedin"></a>
+            <a href="https://www.pinterest.com/" target="_blank" class="fab fa-pinterest"></a>
+        </div>
+        
+    </div>
+
+    <div class = "links">
+        <a href = "#">home</a>
+        <a href = "#">about</a>
+        <a href = "#">menu</a>
+        <a href = "#">products</a>
+        <a href = "#">review</a>
+        <a href = "#">contact</a>
+        <a href = "#">blogs</a>
+    </div>
+
+    <div class = "credit">
+        created by <span> Lana Danolić</span> | all rights reserved
+    </div>
+</section>
+<!--footer section ends here-->
+
+
+
+
+
+
+    <!--custom js file link-->
+    <script src = "js/script.js"></script>
+</body>
+</html>
