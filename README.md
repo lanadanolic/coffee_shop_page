@@ -15,8 +15,38 @@ There is a dedicated contact section where users can enter their personal detail
 Responsive Design:
 The app is designed to work seamlessly on various devices, including desktops and mobile devices. Responsive CSS styles ensure that the layout adapts to different screen sizes, providing a consistent user experience.
 
-Additional Interactive Elements:
+Additional Interactive Elements: 
 Other interactive features include a "Read More" toggle in the home section for additional content and a rating system where users can interact with elements like hearts or stars (if implemented), enhancing user engagement.
 
 Overall, the Coffee Shop App provides a complete solution that combines modern web design, interactive functionality, and a seamless user experience. It is a showcase project that leverages HTML, CSS, and JavaScript to deliver a visually appealing and functionally robust application for a coffee shop.
+![slika1](https://github.com/user-attachments/assets/33f1ddd2-9b9c-491a-9e06-e34767750a00)
 
+![slika2](https://github.com/user-attachments/assets/17e9aee8-7770-42df-97ac-22ff68891871)
+
+![slika3](https://github.com/user-attachments/assets/454af728-22be-4921-8c09-19ba243767d9)
+
+
+![slika4](https://github.com/user-attachments/assets/1f3e12ca-b6c4-4958-8d5a-aa0759e3650f)
+
+![slika5](https://github.com/user-attachments/assets/d21820b5-6cc0-47ad-8bf7-b9d38a651702)
+
+![slika6](https://github.com/user-attachments/assets/d7ab8593-3162-4da0-9e14-0af8916d55d8)
+
+![slika7](https://github.com/user-attachments/assets/4f5a1ec7-7674-4156-9802-12f427c48d20)
+
+![slika8](https://github.com/user-attachments/assets/f3c31996-7bba-4bc7-bc70-7d8b7327026d)
+
+![slika9](https://github.com/user-attachments/assets/f23dab7b-fd3f-4e1d-92f9-5efe02389ab0)
+
+![slika10](https://github.com/user-attachments/assets/6e463bb3-c924-4b77-9367-a758d3406962)
+
+
+![slika11](https://github.com/user-attachments/assets/80a17340-5ce6-4b5b-a0e4-eef414146400)
+
+![slika12](https://github.com/user-attachments/assets/5aeba13f-4465-4d47-831a-4848439fd20f)
+
+![slika13](https://github.com/user-attachments/assets/5b4cdefb-aa6f-49e7-9379-a9434c44bf48)
+
+![slika14](https://github.com/user-attachments/assets/4d5493dc-948a-4f73-ad72-411297a85be5)
+
+![slika15](https://github.com/user-attachments/assets/d8a1fc87-08b2-4d70-af0e-a2b37835ded1)
