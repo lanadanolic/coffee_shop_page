@@ -20,7 +20,8 @@ Other interactive features include a "Read More" toggle in the home section for 
 
 Overall, the Coffee Shop App provides a complete solution that combines modern web design, interactive functionality, and a seamless user experience. It is a showcase project that leverages HTML, CSS, and JavaScript to deliver a visually appealing and functionally robust application for a coffee shop.
 
-![slika1](https://github.com/user-attachments/assets/33f1ddd2-9b9c-491a-9e06-e34767750a00)
+![image](https://github.com/user-attachments/assets/c450e7f3-0eee-43b8-8c0e-25eef0b97284)
+
 
 ![slika2](https://github.com/user-attachments/assets/17e9aee8-7770-42df-97ac-22ff68891871)
 
