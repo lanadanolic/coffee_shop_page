@@ -23,7 +23,8 @@ Overall, the Coffee Shop App provides a complete solution that combines modern w
 ![image](https://github.com/user-attachments/assets/c450e7f3-0eee-43b8-8c0e-25eef0b97284)
 
 
-![slika2](https://github.com/user-attachments/assets/17e9aee8-7770-42df-97ac-22ff68891871)
+![image](https://github.com/user-attachments/assets/6f801898-bfb1-4807-9d7b-d1b564339c19)
+
 
 ![slika3](https://github.com/user-attachments/assets/454af728-22be-4921-8c09-19ba243767d9)
 
