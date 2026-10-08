@@ -1,0 +1,13 @@
+
+{
+  "name": "coffee-shop-website",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Responsive coffee shop website built with HTML, CSS, and JavaScript",
+  "scripts": {
+    "start": "vite --host 127.0.0.1"
+  },
+  "devDependencies": {
+    "vite": "^7.0.0"
+  }
+}

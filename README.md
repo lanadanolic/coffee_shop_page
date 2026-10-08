@@ -40,22 +40,77 @@ coffee_shop_page/
 
 ## Getting Started
 
-Clone the repository:
+### 1. Clone the Repository
+
+Clone the repository using Git:
 
 ```bash
 git clone https://github.com/lanadanolic/coffee_shop_page.git
 ```
 
-Navigate to the project directory:
+### 2. Navigate to the Project Directory
 
 ```bash
 cd coffee_shop_page
 ```
 
-Open `index.html` in a web browser.
+### 3. Open the Project in Visual Studio Code
 
-No additional installation or build process is required.
+```bash
+code .
+```
+
+### 4. Run the Website
+
+To run the website locally:
+
+1. Install the **Live Server** extension by Ritwick Dey in Visual Studio Code.
+2. Open `index.html`.
+3. Right-click inside the editor and select **Open with Live Server**.
+4. The website will open in your default browser, usually at:
+
+```text
+http://127.0.0.1:5500/
+```
+
+Alternatively, open `index.html` directly in a web browser.
+
+No additional dependencies or build process are required.
+
+## Development
+
+After making changes to the project, check which files have been modified:
+
+```bash
+git status
+```
+
+Stage the modified files:
+
+```bash
+git add .
+```
+
+Commit your changes:
+
+```bash
+git commit -m "Update coffee shop website"
+```
+
+Push the changes to GitHub:
+
+```bash
+git push origin main
+```
+
+To retrieve the latest changes from GitHub:
+
+```bash
+git pull origin main
+```
 
 ## Notes
 
 This project is a frontend demonstration. Shopping cart functionality is implemented using JavaScript, while checkout and table reservation features are simulated without a backend server or database.
+
+No real payments are processed, and reservations are not stored.
