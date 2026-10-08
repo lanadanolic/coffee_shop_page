@@ -1162,3 +1162,192 @@ input[type="date"], input[type="time"] {
     padding-left: 15px;
 }
 
+
+/* ==========================================
+   SHOPPING CART - UPDATED STYLES
+========================================== */
+
+.header .cart-items-container {
+    padding: 1.5rem;
+    overflow-y: auto;
+    overflow-x: hidden;
+    height: calc(100vh - 9.5rem);
+    z-index: 1001;
+}
+
+.header .cart-items-container .cart-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.5rem 0;
+    border-bottom: 1px solid #ddd;
+}
+
+.header .cart-items-container .cart-item img {
+    width: 5.5rem;
+    height: 5.5rem;
+    object-fit: cover;
+    border-radius: 0.5rem;
+    margin: 0;
+    flex-shrink: 0;
+}
+
+.header .cart-items-container .cart-item > div {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.header .cart-items-container .cart-item h4 {
+    font-size: 1.3rem;
+    color: var(--black);
+    overflow-wrap: anywhere;
+}
+
+.header .cart-items-container .cart-item .price {
+    font-size: 1.3rem;
+    color: var(--main-color);
+}
+
+.header .cart-items-container .cart-item .quantity {
+    font-size: 1.2rem;
+    color: #555;
+}
+
+.header .cart-items-container .cart-item button {
+    background: var(--main-color);
+    color: #fff;
+    min-width: 2.5rem;
+    min-height: 2.5rem;
+    padding: 0.4rem;
+    border-radius: 0.4rem;
+    cursor: pointer;
+    font-size: 1.5rem;
+    flex-shrink: 0;
+}
+
+.header .cart-items-container .cart-item button:hover {
+    background: var(--black);
+}
+
+#total-price {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--black);
+    padding: 1.5rem 0;
+    text-align: center;
+}
+
+
+/* ==========================================
+   MENU CART COUNTERS
+========================================== */
+
+.menu .cart-count {
+    margin-top: 1rem;
+    font-size: 1.4rem;
+    color: #fff;
+}
+
+.menu .cart-count .count {
+    font-weight: bold;
+    color: var(--main-color);
+}
+
+.menu .remove-from-cart {
+    cursor: pointer;
+    padding: 0.5rem 1rem;
+    border-radius: 0.4rem;
+}
+
+
+/* ==========================================
+   DEMO CHECKOUT AND RESERVATION POPUPS
+========================================== */
+
+.popup-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.75);
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    z-index: 2000;
+}
+
+.popup-content {
+    background: #fff;
+    color: var(--black);
+    padding: 3rem;
+    width: 100%;
+    max-width: 45rem;
+    border-radius: 1rem;
+    text-align: center;
+}
+
+.popup-content h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.popup-content p {
+    font-size: 1.6rem;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+}
+
+.popup-content .btn {
+    margin: 1rem 0.5rem;
+}
+
+.popup-content .close-btn {
+    background: var(--black);
+    color: white;
+    padding: 1rem 2rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+}
+
+.popup-content .close-btn:hover {
+    background: var(--main-color);
+}
+
+
+/* ==========================================
+   RESPONSIVE IMPROVEMENTS
+========================================== */
+
+@media (max-width: 600px) {
+
+    .header .cart-items-container {
+        width: min(100%, 34rem);
+        max-height: calc(100dvh - 9.5rem);
+    }
+
+    .header .cart-items-container .cart-item {
+        gap: 0.6rem;
+    }
+
+    .header .cart-items-container .cart-item img {
+        width: 4rem;
+        height: 4rem;
+    }
+
+    .header .cart-items-container .cart-item button {
+        min-width: 2.2rem;
+        min-height: 2.2rem;
+    }
+
+    .popup-content {
+        padding: 2rem;
+    }
+
+    .popup-content h2 {
+        font-size: 2rem;
+    }
+}
