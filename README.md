@@ -18,6 +18,7 @@ A responsive coffee shop website built with HTML, CSS, and vanilla JavaScript. T
 - CSS3
 - JavaScript (Vanilla JS)
 - Font Awesome
+- Vite (Development Server)
 
 ## Demo
 
@@ -35,6 +36,7 @@ coffee_shop_page/
 ├── js/
 │   └── script.js
 ├── images/
+├── package.json
 └── README.md
 ```
 
@@ -60,22 +62,33 @@ cd coffee_shop_page
 code .
 ```
 
-### 4. Run the Website
+### 4. Install Dependencies
 
-To run the website locally:
+Make sure **Node.js and npm** are installed.
 
-1. Install the **Live Server** extension by Ritwick Dey in Visual Studio Code.
-2. Open `index.html`.
-3. Right-click inside the editor and select **Open with Live Server**.
-4. The website will open in your default browser, usually at:
+Install the project dependencies:
 
-```text
-http://127.0.0.1:5500/
+```bash
+npm install
 ```
 
-Alternatively, open `index.html` directly in a web browser.
+### 5. Run the Website
 
-No additional dependencies or build process are required.
+Start the local development server:
+
+```bash
+npm start
+```
+
+Open the URL displayed in the terminal, usually:
+
+```text
+http://127.0.0.1:5173/
+```
+
+The website will open in your browser.
+
+To stop the development server, press `Ctrl + C` in the terminal.
 
 ## Development
 
