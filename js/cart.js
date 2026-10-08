@@ -3,7 +3,7 @@ const STORAGE_KEY = 'coffee-shop-cart';
 const cart = new Map();
 
 
-// Load saved cart from localStorage
+// Load cart from localStorage
 function loadCart() {
     try {
         const savedCart = localStorage.getItem(STORAGE_KEY);
