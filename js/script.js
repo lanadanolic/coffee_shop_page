@@ -1,433 +1,574 @@
-let navbar = document.querySelector('.navbar');
-let searchForm = document.querySelector('.search-form');
-let cartItem = document.querySelector('.cart-items-container');
 
-// Toggle navbar, search form, and cart item visibility
-document.querySelector('#menu-btn').onclick = () => {
-    navbar.classList.toggle('active');
-    searchForm.classList.remove('active');
-    cartItem.classList.remove('active');
-};
+ // Coffee Shop - frontend interactions
+ // HTML, CSS & Vanilla JavaScript
 
-document.querySelector('#search-btn').onclick = () => {
-    searchForm.classList.toggle('active');
-    navbar.classList.remove('active');
-    cartItem.classList.remove('active');
-};
+'use strict';
 
-document.querySelector('#cart-btn').onclick = () => {
-    cartItem.classList.toggle('active');
-    navbar.classList.remove('active');
-    searchForm.classList.remove('active');
-};
+// ==========================================
+// SHOPPING CART
+// ==========================================
 
-// Close all forms and navbar on scroll
-window.onscroll = () => {
-    navbar.classList.remove('active');
-    searchForm.classList.remove('active');
-    cartItem.classList.remove('active');
-};
+const cart = new Map();
 
-// Cart functionality
-document.addEventListener("DOMContentLoaded", () => {
-    const cartItemsContainer = document.getElementById("cart-items");
-    const addToCartIcons = document.querySelectorAll(".fa-shopping-cart");
-    const addToCartButtons = document.querySelectorAll(".menu .box .btn");
+// Calculate total cart price
+function getCartTotal() {
+    return [...cart.values()].reduce(
+        (total, product) =>
+            total + product.price * product.quantity,
+        0
+    );
+}
 
-    // Add item to cart
-    function addToCart(name, price, image) {
-        const cartItem = document.createElement("div");
-        cartItem.classList.add("cart-item");
+// Update product controls in menu
+function updateProductControls(id) {
+    const buttons = document.querySelectorAll('.add-to-cart');
+    const box = buttons[Number(id)]?.closest('.box');
 
-        cartItem.innerHTML = `
-            <img src="${image}" alt="Product">
-            <h4>${name}</h4>
-            <span>${price}</span>
-            <button class="remove-btn">X</button>
-        `;
+    if (!box) return;
 
-        cartItemsContainer.appendChild(cartItem);
+    const quantity = cart.get(id)?.quantity ?? 0;
 
-        // Remove item from cart
-        cartItem.querySelector(".remove-btn").addEventListener("click", () => {
-            cartItem.remove();
-        });
+    const counter = box.querySelector('.cart-count');
+    const count = box.querySelector('.count');
+    const removeButton = box.querySelector('.remove-from-cart');
+
+    if (counter) {
+        counter.style.display = quantity ? 'block' : 'none';
     }
 
-    
-});
+    if (count) {
+        count.textContent = quantity;
+    }
 
-// Toggle text between short and long version
+    if (removeButton) {
+        removeButton.style.display = quantity
+            ? 'inline-block'
+            : 'none';
+    }
+}
+
+// Render all cart items
+function renderCart() {
+    const container = document.getElementById('cart-items');
+    const totalElement = document.getElementById('total-price');
+
+    if (!container || !totalElement) return;
+
+    container.replaceChildren();
+
+    for (const [id, product] of cart) {
+
+        const item = document.createElement('div');
+        item.className = 'cart-item';
+
+        // Product image
+        const image = document.createElement('img');
+        image.src = product.image;
+        image.alt = product.name;
+
+        // Product details
+        const details = document.createElement('div');
+
+        const title = document.createElement('h4');
+        title.textContent = product.name;
+
+        const price = document.createElement('span');
+        price.className = 'price';
+        price.textContent =
+            `$${(product.price * product.quantity).toFixed(2)}`;
+
+        const quantity = document.createElement('span');
+        quantity.className = 'quantity';
+        quantity.textContent =
+            ` Quantity: ${product.quantity}`;
+
+        details.append(title, price, quantity);
+
+        // Decrease quantity
+        const decreaseButton = document.createElement('button');
+        decreaseButton.type = 'button';
+        decreaseButton.textContent = '−';
+
+        decreaseButton.setAttribute(
+            'aria-label',
+            `Decrease ${product.name} quantity`
+        );
+
+        decreaseButton.addEventListener('click', () => {
+            changeQuantity(id, -1);
+        });
+
+        // Increase quantity
+        const increaseButton = document.createElement('button');
+        increaseButton.type = 'button';
+        increaseButton.textContent = '+';
+
+        increaseButton.setAttribute(
+            'aria-label',
+            `Increase ${product.name} quantity`
+        );
+
+        increaseButton.addEventListener('click', () => {
+            changeQuantity(id, 1);
+        });
+
+        // Remove product
+        const removeButton = document.createElement('button');
+        removeButton.type = 'button';
+        removeButton.textContent = '×';
+
+        removeButton.setAttribute(
+            'aria-label',
+            `Remove ${product.name}`
+        );
+
+        removeButton.addEventListener('click', () => {
+            changeQuantity(id, -product.quantity);
+        });
+
+        item.append(
+            image,
+            details,
+            decreaseButton,
+            increaseButton,
+            removeButton
+        );
+
+        container.appendChild(item);
+    }
+
+    // Update total price
+    totalElement.textContent =
+        `Total: $${getCartTotal().toFixed(2)}`;
+
+    // Synchronize menu counters
+    document.querySelectorAll('.add-to-cart').forEach(
+        (_, index) => {
+            updateProductControls(String(index));
+        }
+    );
+}
+
+// Update product quantity
+function changeQuantity(id, difference) {
+    const product = cart.get(id);
+
+    if (!product) return;
+
+    product.quantity += difference;
+
+    if (product.quantity <= 0) {
+        cart.delete(id);
+    }
+
+    renderCart();
+}
+
+
+// ==========================================
+// EXPANDABLE TEXT
+// ==========================================
+
 function toggleText(event) {
     event.preventDefault();
-    const longText = event.target.closest('.content').querySelector('.long-text');
-    const shortText = event.target.closest('.content').querySelector('.short-text');
 
-    if (longText.style.display === 'none') {
-        longText.style.display = 'block';
-        shortText.style.display = 'none';
-        event.target.textContent = 'Read less';
-    } else {
-        longText.style.display = 'none';
-        shortText.style.display = 'block';
-        event.target.textContent = 'Read more';
-    }
+    const content = event.currentTarget.closest('.content');
+
+    const shortText = content?.querySelector('.short-text');
+    const longText = content?.querySelector('.long-text');
+
+    if (!shortText || !longText) return;
+
+    const isHidden =
+        getComputedStyle(longText).display === 'none';
+
+    longText.style.display = isHidden ? 'block' : 'none';
+    shortText.style.display = isHidden ? 'none' : 'block';
+
+    event.currentTarget.textContent =
+        isHidden ? 'Read less' : 'Read more';
 }
 
-// Zoom image functionality
+
+// ==========================================
+// IMAGE ZOOM
+// ==========================================
+
+function removeCloseButton(container) {
+    container?.querySelector('.close-btn')?.remove();
+}
+
 function zoomImage(event, imageId) {
     event.preventDefault();
 
     const image = document.getElementById(imageId);
-    const imageContainer = image.closest('.image');
+    const container = image?.closest('.image');
 
-    if (!image.classList.contains('zoomed')) {
-        image.classList.add('zoomed');
-        addCloseButton(imageContainer);
-    } else {
+    if (!image || !container) return;
+
+    // Close enlarged image
+    if (image.classList.contains('zoomed')) {
         image.classList.remove('zoomed');
-        removeCloseButton(imageContainer);
+        removeCloseButton(container);
+        return;
     }
-}
 
-// Zoom image functionality
-function zoomImage(event, imageId) {
-    event.preventDefault();
+    // Enlarge image
+    image.classList.add('zoomed');
 
-    const image = document.getElementById(imageId);
-    const imageContainer = image.closest('.image');
+    if (container.querySelector('.close-btn')) return;
 
-    if (!image.classList.contains('zoomed')) {
-        image.classList.add('zoomed');
-        addCloseButton(imageContainer, image);
-    } else {
-        image.classList.remove('zoomed');
-        removeCloseButton(imageContainer);
-    }
-}
+    const closeButton = document.createElement('button');
 
-// Funkcija za povećavanje slike
-function zoomImage(event, imageId) {
-    event.preventDefault();
+    closeButton.type = 'button';
+    closeButton.className = 'close-btn';
+    closeButton.textContent = '×';
 
-    const image = document.getElementById(imageId);
-    const imageContainer = image.closest('.image'); // Pronalazi div slike
+    closeButton.setAttribute(
+        'aria-label',
+        'Close enlarged image'
+    );
 
-    if (!image.classList.contains('zoomed')) {
-        image.classList.add('zoomed');
-        addCloseButton(imageContainer);
-    } else {
-        image.classList.remove('zoomed');
-        removeCloseButton(imageContainer);
-    }
-}
+    Object.assign(closeButton.style, {
+        position: 'absolute',
+        top: '-80px',
+        right: '-80px',
+        color: 'white',
+        fontSize: '30px',
+        width: '50px',
+        height: '50px',
+        borderRadius: '50%',
+        cursor: 'pointer',
+        zIndex: '10'
+    });
 
-// Funkcija za dodavanje gumba unutar slike
-function addCloseButton(imageContainer) {
-    // Provjera postoji li već gumb
-    if (imageContainer.querySelector('.close-btn')) return;
-
-    let closeButton = document.createElement('button');
-    closeButton.classList.add('close-btn');
-    closeButton.innerHTML = '&times;'; // X simbol
-
-    // Dodavanje gumba unutar imageContainer-a
-    imageContainer.appendChild(closeButton);
-
-    // Stiliziranje gumba
-    closeButton.style.position = 'absolute';
-    closeButton.style.top = '-80px'; 
-    closeButton.style.right = '-80px'; 
-    closeButton.style.backgroundColor ;
-    closeButton.style.color = 'white';
-    closeButton.style.fontSize = '30px';
-    closeButton.style.width = '50px';
-    closeButton.style.height = '50px';
-    closeButton.style.borderRadius = '50%';
-    closeButton.style.textAlign = 'center';
-    closeButton.style.lineHeight = '50px';
-    closeButton.style.cursor = 'pointer';
-    closeButton.style.zIndex = '10';
-
-    // Event za zatvaranje slike
     closeButton.addEventListener('click', () => {
-        const image = imageContainer.querySelector('.productImage');
         image.classList.remove('zoomed');
-        removeCloseButton(imageContainer);
+        removeCloseButton(container);
     });
+
+    container.appendChild(closeButton);
 }
 
-// Funkcija za uklanjanje gumba
-function removeCloseButton(imageContainer) {
-    const closeButton = imageContainer.querySelector('.close-btn');
-    if (closeButton) {
-        closeButton.remove();
+
+// ==========================================
+// CHECKOUT SIMULATION
+// ==========================================
+
+function showCheckoutPopup(event) {
+    event?.preventDefault();
+
+    const popup = document.getElementById('checkout-popup');
+
+    if (!popup) return;
+
+    if (cart.size === 0) {
+        alert('Your cart is empty. Add a product first.');
+        return;
+    }
+
+    popup.style.display = 'flex';
+}
+
+function closeCheckoutPopup() {
+    const popup = document.getElementById('checkout-popup');
+
+    if (popup) {
+        popup.style.display = 'none';
+    }
+}
+
+// Demonstration only - no real payments
+function processPayment() {
+    if (cart.size === 0) return;
+
+    const total = getCartTotal().toFixed(2);
+
+    alert(
+        `Demo order placed! Total: $${total}. ` +
+        'No payment was made.'
+    );
+
+    cart.clear();
+    renderCart();
+    closeCheckoutPopup();
+}
+
+
+// ==========================================
+// RESERVATION POPUP
+// ==========================================
+
+function showPopup() {
+    const popup = document.getElementById('confirmation-popup');
+
+    if (popup) {
+        popup.style.display = 'flex';
+    }
+}
+
+function closePopup() {
+    const popup = document.getElementById('confirmation-popup');
+
+    if (popup) {
+        popup.style.display = 'none';
     }
 }
 
 
+// ==========================================
+// INITIALIZE APPLICATION
+// ==========================================
 
+document.addEventListener('DOMContentLoaded', () => {
 
+    // ======================================
+    // NAVIGATION
+    // ======================================
 
+    const navbar = document.querySelector('.navbar');
+    const searchForm = document.querySelector('.search-form');
+    const cartPanel = document.querySelector('.cart-items-container');
 
-// Add to cart buttons functionality
-const addToCartButtons = document.querySelectorAll('.add-to-cart');
+    const panels = [navbar, searchForm, cartPanel];
 
-addToCartButtons.forEach(button => {
-    button.addEventListener('click', function(event) {
-        event.preventDefault();
+    function bindToggle(buttonId, panel) {
+        document.getElementById(buttonId)?.addEventListener(
+            'click',
+            () => {
+                const wasOpen =
+                    panel?.classList.contains('active');
 
-        const box = this.closest('.box');
-        const countElement = box.querySelector('.cart-count');
-        const countSpan = box.querySelector('.count');
-        const removeButton = box.querySelector('.remove-from-cart');
+                // Close all panels
+                panels.forEach(item => {
+                    item?.classList.remove('active');
+                });
 
-        let count = parseInt(countSpan.innerText);
-        count=count+1;
-
-        countSpan.innerText = count;
-        countElement.style.display = 'block';
-        removeButton.style.display = 'inline-block';
-
-        this.innerText = 'Added to cart';
-        this.disabled = true;
-        this.style.backgroundColor = '#A52A2A';
-        this.style.color = 'white';
-    });
-});
-
-// Remove from cart buttons functionality
-const removeFromCartButtons = document.querySelectorAll('.remove-from-cart');
-removeFromCartButtons.forEach(button => {
-    button.addEventListener('click', function(event) {
-        event.preventDefault();
-
-        const box = this.closest('.box');
-        const countSpan = box.querySelector('.count');
-        const addToCartButton = box.querySelector('.add-to-cart');
-        let count = parseInt(countSpan.innerText);
-
-        if (count > 0) {
-            count--;
-            countSpan.innerText = count;
-            addToCartButton.innerText = `Add to cart`;
-
-            const cart = document.querySelector('#cart-items');
-            const cartItem = cart.querySelector(`.cart-item[data-id="${box.dataset.id}"]`);
-
-            if (count === 0) {
-                box.querySelector('.cart-count').style.display = 'none';
-                this.style.display = 'none';
-
-                addToCartButton.disabled = false;
-                addToCartButton.style.backgroundColor = '';
-                addToCartButton.style.color = '';
-
-                if (cartItem) {
-                    cartItem.remove();
+                // Open selected panel
+                if (!wasOpen) {
+                    panel?.classList.add('active');
                 }
             }
-        }
-
-        addToCartButton.classList.remove('added-to-cart');
-        addToCartButton.style.backgroundColor = '';
-    });
-});
-
-document.addEventListener("DOMContentLoaded", () => {
-    const cartItemsContainer = document.getElementById("cart-items"); // Košarica
-    const addToCartButtons = document.querySelectorAll(".add-to-cart"); // Gumbi za dodavanje u košaricu
-
-    // Funkcija za dodavanje proizvoda u košaricu
-    function addToCart(name, price, image, productId) {
-        const cartItem = document.createElement("div");
-        cartItem.classList.add("cart-item");
-        cartItem.dataset.id = productId; // Poveži proizvod s ID-em
-
-        cartItem.innerHTML = `
-            <img src="${image}" alt="Proizvod">
-            <h4>${name}</h4>
-            <span class="price">${price}</span>
-            <span class="quantity">1</span> <!-- Početna količina -->
-            <button class="decrease-btn">-</button> <!-- Gumb za smanjenje količine -->
-            <button class="remove-btn">X</button> <!-- Gumb za uklanjanje proizvoda -->
-        `;
-
-        cartItemsContainer.appendChild(cartItem);
-
-        // Omogućava uklanjanje proizvoda iz košarice
-        cartItem.querySelector(".remove-btn").addEventListener("click", () => {
-            cartItem.remove();
-            updateTotalPrice(); // Ažuriraj ukupnu cijenu nakon uklanjanja proizvoda
-        });
-
-        // Omogućava smanjenje količine proizvoda
-        cartItem.querySelector(".decrease-btn").addEventListener("click", () => {
-            decreaseFromCart(productId);
-        });
-
-        updateTotalPrice(); // Ažuriraj ukupnu cijenu odmah nakon dodavanja proizvoda
+        );
     }
 
-    // Funkcija za smanjenje količine proizvoda u košarici
-    function decreaseFromCart(productId) {
-        let cartItem = cartItemsContainer.querySelector(`.cart-item[data-id="${productId}"]`);
-        if (cartItem) {
-            let quantityElement = cartItem.querySelector(".quantity");
-            let currentQuantity = parseInt(quantityElement.innerText);
+    bindToggle('menu-btn', navbar);
+    bindToggle('search-btn', searchForm);
+    bindToggle('cart-btn', cartPanel);
 
-            if (currentQuantity > 1) {
-                quantityElement.innerText = currentQuantity - 1; // Smanjivanje količine
-            } else {
-                cartItem.remove(); // Ako količina dođe na 0, ukloni proizvod
+    // Close panels on scroll
+    window.addEventListener(
+        'scroll',
+        () => {
+            panels.forEach(item => {
+                item?.classList.remove('active');
+            });
+        },
+        { passive: true }
+    );
+
+
+    // ======================================
+    // ADD PRODUCTS TO CART
+    // ======================================
+
+    document.querySelectorAll('.add-to-cart').forEach(
+        (button, index) => {
+
+            const box = button.closest('.box');
+
+            const name = box
+                ?.querySelector('h3')
+                ?.textContent.trim();
+
+            const image = box
+                ?.querySelector('img')
+                ?.src;
+
+            const priceText = box
+                ?.querySelector('.price')
+                ?.textContent.trim() ?? '';
+
+            // Extract current price, not old price
+            const price = Number(
+                priceText.match(/\$\s*(\d+(?:\.\d+)?)/)?.[1]
+            );
+
+            const id = String(index);
+
+            if (
+                !name ||
+                !image ||
+                !Number.isFinite(price) ||
+                price <= 0
+            ) {
+                return;
             }
+
+            // Add product
+            button.addEventListener('click', event => {
+                event.preventDefault();
+
+                if (cart.has(id)) {
+                    changeQuantity(id, 1);
+                } else {
+                    cart.set(id, {
+                        name,
+                        image,
+                        price,
+                        quantity: 1
+                    });
+
+                    renderCart();
+                }
+            });
+
+            // Remove one product
+            box.querySelector('.remove-from-cart')
+                ?.addEventListener('click', event => {
+                    event.preventDefault();
+                    changeQuantity(id, -1);
+                });
         }
-        updateTotalPrice(); // Ažuriraj ukupnu cijenu
+    );
+
+    renderCart();
+
+
+    // ======================================
+    // SAFE DEMO CHECKOUT
+    // ======================================
+
+    const checkoutContent = document.querySelector(
+        '#checkout-popup .popup-content'
+    );
+
+    if (checkoutContent) {
+
+        // Remove old card input form
+        checkoutContent.replaceChildren();
+
+        const heading = document.createElement('h2');
+        heading.textContent = 'Demo Checkout';
+
+        const description = document.createElement('p');
+        description.textContent =
+            'This is a demonstration. ' +
+            'No payment will be processed.';
+
+        const confirmButton = document.createElement('button');
+        confirmButton.type = 'button';
+        confirmButton.className = 'btn';
+        confirmButton.textContent = 'Place Demo Order';
+
+        confirmButton.addEventListener(
+            'click',
+            processPayment
+        );
+
+        const closeButton = document.createElement('button');
+        closeButton.type = 'button';
+        closeButton.className = 'close-btn';
+        closeButton.textContent = 'Close';
+
+        closeButton.addEventListener(
+            'click',
+            closeCheckoutPopup
+        );
+
+        checkoutContent.append(
+            heading,
+            description,
+            confirmButton,
+            closeButton
+        );
     }
 
 
-    
-    // Funkcija za ažuriranje ukupne cijene u košarici
-  // Početna vrijednost za ukupnu cijenu
-let totalPrice = 0;
+    // ======================================
+    // CONTACT FORM
+    // ======================================
 
-// Funkcija koja ažurira ukupnu cijenu na stranici
-function updateTotalPrice() {
-    document.getElementById('total-price').textContent = `Total: €${totalPrice.toFixed(2)}`;
-}
+    document.getElementById('contact-form')
+        ?.addEventListener('submit', event => {
 
-// Dodavanje proizvoda u košaricu
-document.querySelectorAll('.add-to-cart').forEach(button => {
-    button.addEventListener('click', function (event) {
-        event.preventDefault(); // Sprečava defaultno ponašanje linka
-
-        // Pronađi cijenu proizvoda
-        let priceText = this.previousElementSibling.textContent; // Pronađi cijenu u .price
-        let price = parseFloat(priceText.replace('$', '')); // Ukloni znak $ i pretvori u broj
-
-        // Dodaj cijenu proizvoda u ukupnu cijenu
-        totalPrice += price;
-
-        // Ažuriraj ukupnu cijenu na stranici
-        updateTotalPrice();
-
-        // Dodaj proizvod u košaricu (ovdje možeš dodati logiku za prikaz proizvoda u košarici)
-        let cartItemsContainer = document.getElementById('cart-items');
-        let cartItem = document.createElement('div');
-        cartItem.classList.add('cart-item');
-        cartItem.textContent = `${this.previousElementSibling.previousElementSibling.textContent} - €${price.toFixed(2)}`;
-        cartItemsContainer.appendChild(cartItem);
-    });
-});
-
-
-
-    // Dodavanje proizvoda u košaricu klikom na "Add to Cart" gumb
-    addToCartButtons.forEach(button => {
-        button.addEventListener("click", function(event) {
             event.preventDefault();
-            const box = this.closest(".box");
-            const productId = box.dataset.id;
-            const productName = box.querySelector("h3").innerText;
-            const productPrice = box.querySelector(".price").innerText;
-            const productImage = box.querySelector("img").src;
 
-            addToCart(productName, productPrice, productImage, productId);
+            const form = event.currentTarget;
+
+            if (!form.reportValidity()) return;
+
+            // Scoped selectors avoid duplicate HTML IDs
+            const name = form
+                .querySelector('[id="name"]')
+                ?.value.trim() ?? '';
+
+            const email = form
+                .querySelector('[id="email"]')
+                ?.value.trim() ?? '';
+
+            const phone = form
+                .querySelector('[id="phone"]')
+                ?.value.trim() ?? '';
+
+            if (!name || !email) {
+                alert('Please enter your name and email.');
+                return;
+            }
+
+            form.querySelector('#contact-info')
+                ?.classList.remove('hidden');
+
+            const subject = `Contact from: ${name}`;
+
+            const body =
+                `Name: ${name}\n` +
+                `Email: ${email}\n` +
+                `Phone: ${phone}`;
+
+            const mailtoLink =
+                'mailto:lana.danolicc@gmail.com' +
+                `?subject=${encodeURIComponent(subject)}` +
+                `&body=${encodeURIComponent(body)}`;
+
+            // Open user's email client
+            window.location.href = mailtoLink;
         });
-    });
+
+
+    // ======================================
+    // TABLE RESERVATION
+    // ======================================
+
+    document.getElementById('reservation-form')
+        ?.addEventListener('submit', event => {
+
+            event.preventDefault();
+
+            const form = event.currentTarget;
+
+            if (!form.reportValidity()) return;
+
+            // Demo reservation - no backend
+            const heading = document.querySelector(
+                '#confirmation-popup .popup-content h2'
+            );
+
+            if (heading) {
+                heading.textContent = 'Demo Reservation';
+            }
+
+            const message = document.querySelector(
+                '#confirmation-popup .popup-content p'
+            );
+
+            if (message) {
+                message.textContent =
+                    'Demo reservation submitted. ' +
+                    'No booking was saved.';
+            }
+
+            showPopup();
+        });
 
 });
-
-
-
-
-
-
-/////////////////////////////////////////////////
-/////////////////////////////////////
-/* */
-// Show the checkout popup
-function showCheckoutPopup(event) {
-    event.preventDefault(); // Spriječavamo defaultno ponašanje linka (koje vodi na #)
-    document.getElementById("checkout-popup").style.display = "flex";
-}
-
-// Close the checkout popup
-function closeCheckoutPopup() {
-    document.getElementById("checkout-popup").style.display = "none";
-}
-
-// Process the payment (simulate payment)
-function processPayment() {
-    const cardNumber = document.getElementById("card-number").value;
-    const cardExpiry = document.getElementById("card-expiry").value;
-    const cardCVC = document.getElementById("card-cvc").value;
-
-    if (cardNumber && cardExpiry && cardCVC) {
-        alert("Payment successful! Your card details: " +
-            "\nCard Number: " + cardNumber + 
-            "\nExpiry Date: " + cardExpiry + 
-            "\nCVC: " + cardCVC);
-         // Čišćenje podataka u formi
-    document.getElementById('checkout-form').reset(); // Briše sve unesene podatke u formi   
-        closeCheckoutPopup(); // Close the popup after successful payment
-    } else {
-        alert("Please fill in all the fields.");
-    }
-}
-
-
-document.getElementById("contact-form").addEventListener("submit", function(event) {
-    event.preventDefault(); // Sprječava reload stranice
-
-    // Prikazuje kontakt informacije
-    document.getElementById("contact-info").classList.remove("hidden");
-
-    // Kreira mailto link s unesenim podacima
-    var name = document.getElementById("name").value;
-    var email = document.getElementById("email").value;
-    var phone = document.getElementById("phone").value;
-    var subject = "Contact from: " + name;
-    var body = "Name: " + name + "\nEmail: " + email + "\nPhone: " + phone;
-    var mailtoLink = "mailto:lana.danolicc@gmail.com?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
-
-    // Otvara korisnikov mail klijent
-    window.location.href = mailtoLink;
-});
-
-
-
-
-
-///////////////////////////////////////////////////////////////////////////////////////
-// Functions to handle form submission and showing the confirmation popup
-document.getElementById("reservation-form").addEventListener("submit", function(event) {
-    event.preventDefault(); // Prevent form from submitting in the usual way
-
-    // Get form values
-    const name = document.getElementById("name").value;
-    const email = document.getElementById("email").value;
-    const phone = document.getElementById("phone").value;
-    const reservationDate = document.getElementById("reservation-date").value;
-    const reservationTime = document.getElementById("reservation-time").value;
-    const tableType = document.getElementById("table-type").value;
-
-    // You can process the form data or send it to a server here
-
-    // Show confirmation popup
-    showPopup();
-});
-
-// Function to show the confirmation popup
-function showPopup() {
-    document.getElementById("confirmation-popup").style.display = 'flex';
-}
-
-// Function to close the confirmation popup
-function closePopup() {
-    document.getElementById("confirmation-popup").style.display = 'none';
-}
-
-
-
-
