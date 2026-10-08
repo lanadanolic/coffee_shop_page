@@ -1,4 +1,4 @@
-# Coffee Shop Website
+# Coffee Shop Storefront
 
 A responsive coffee shop website built with HTML, CSS, and vanilla JavaScript. The project focuses on frontend development, interactive UI components, and DOM manipulation.
 
