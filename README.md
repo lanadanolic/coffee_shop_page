@@ -47,13 +47,13 @@ coffee_shop_page/
 Clone the repository using Git:
 
 ```bash
-git clone https://github.com/lanadanolic/coffee_shop_page.git
+git clone https://github.com/lanadanolic/coffee-shop-storefront.git
 ```
 
 ### 2. Navigate to the Project Directory
 
 ```bash
-cd coffee_shop_page
+cd coffee-shop-storefront
 ```
 
 ### 3. Open the Project in Visual Studio Code
