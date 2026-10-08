@@ -29,15 +29,23 @@ A responsive coffee shop website built with HTML, CSS, and vanilla JavaScript. T
 ## Project Structure
 
 ```text
-coffee_shop_page/
-├── index.html
+
+coffee-shop-storefront/
 ├── css/
 │   └── style.css
-├── js/
-│   └── script.js
 ├── images/
+├── js/
+│   ├── main.js
+│   ├── cart.js
+│   ├── products.js
+│   ├── forms.js
+│   └── ui.js
+├── .gitignore
+├── index.html
 ├── package.json
+├── package-lock.json
 └── README.md
+
 ```
 
 ## Getting Started
