@@ -1,63 +1,61 @@
-The Coffee Shop App is a responsive web application built using HTML, CSS, and JavaScript. The project aims to create an engaging and user-friendly online experience for coffee shop customers. Here are the key features and functionalities implemented in the project:
+# Coffee Shop Website
 
-Dynamic Menu Display:
-The app showcases a detailed menu featuring various coffee beverages. Each product is displayed with high-quality images, pricing (including discounted prices), and interactive icons such as "Add to Cart," "Favorite," and "Zoom." Users can click these icons to interact with the products, for example, viewing a larger image of the coffee.
+A responsive coffee shop website built with HTML, CSS, and vanilla JavaScript. The project focuses on frontend development, interactive UI components, and DOM manipulation.
 
-Shopping Cart Functionality:
-Users can add products to their cart by clicking the "Add to Cart" buttons. The cart dynamically updates to show the products, their quantities, and the total price. Additional features include the ability to decrease the quantity of an item or remove it entirely from the cart, with the total price recalculating automatically.
+## Features
 
-Interactive Popups:
-The application features interactive popup screens, such as a checkout popup. When users click the "Checkout Now" button, a popup appears prompting them to enter their card details. After submitting the payment information, the form data is cleared, and a confirmation message is displayed.
+- **Responsive Layout** – Adapts to different screen sizes.
+- **Product Menu** – Displays coffee products with images and prices.
+- **Shopping Cart** – Allows users to add and remove products, manage quantities, and view the total price.
+- **Checkout Simulation** – Demonstrates a frontend checkout interface without processing real payments.
+- **Table Reservation** – Provides a reservation form with date, time, and seating preferences.
+- **Contact Form** – Opens the user's email client with prefilled contact information.
+- **Interactive Elements** – Includes image zooming, expandable blog content, and navigation controls.
 
-Contact Section:
-There is a dedicated contact section where users can enter their personal details (name, email, and phone number) to get in touch with the coffee shop. Upon submission, the app can either display the coffee shop's contact details or redirect the user to their email client using a mailto link.
+## Technologies
 
-Responsive Design:
-The app is designed to work seamlessly on various devices, including desktops and mobile devices. Responsive CSS styles ensure that the layout adapts to different screen sizes, providing a consistent user experience.
+- HTML5
+- CSS3
+- JavaScript (Vanilla JS)
+- Font Awesome
 
-Additional Interactive Elements: 
-Other interactive features include a "Read More" toggle in the home section for additional content and a rating system where users can interact with elements like hearts or stars (if implemented), enhancing user engagement.
+## Demo
 
-Overall, the Coffee Shop App provides a complete solution that combines modern web design, interactive functionality, and a seamless user experience. It is a showcase project that leverages HTML, CSS, and JavaScript to deliver a visually appealing and functionally robust application for a coffee shop.
+*An animated demonstration of the website will be added after the final improvements.*
 
-![image](https://github.com/user-attachments/assets/c450e7f3-0eee-43b8-8c0e-25eef0b97284)
+<!-- GIF will be added here -->
 
+## Project Structure
 
-![image](https://github.com/user-attachments/assets/6f801898-bfb1-4807-9d7b-d1b564339c19)
+```text
+coffee_shop_page/
+├── index.html
+├── css/
+│   └── style.css
+├── js/
+│   └── script.js
+├── images/
+└── README.md
+```
 
+## Getting Started
 
-![image](https://github.com/user-attachments/assets/0c8778d6-5677-4914-94d9-93793e013d7a)
+Clone the repository:
 
+```bash
+git clone https://github.com/lanadanolic/coffee_shop_page.git
+```
 
-![image](https://github.com/user-attachments/assets/065ad52c-5b73-4b94-b9b3-5e7b2b05886a)
+Navigate to the project directory:
 
+```bash
+cd coffee_shop_page
+```
 
-![image](https://github.com/user-attachments/assets/e3fd959f-993d-43d4-98ed-2044f766585d)
+Open `index.html` in a web browser.
 
+No additional installation or build process is required.
 
-![image](https://github.com/user-attachments/assets/5ae224f7-dd2a-46ec-931e-d7d95a2db64d)
+## Notes
 
-
-![image](https://github.com/user-attachments/assets/0a138c52-976d-4214-889d-27d3f82d4b13)
-
-
-![image](https://github.com/user-attachments/assets/9aee72a6-259e-4d1a-bdc9-52e8ac7ebc09)
-
-
-![image](https://github.com/user-attachments/assets/a185c05a-bb9e-421b-be75-018ac1e228e4)
-
-
-![image](https://github.com/user-attachments/assets/a4813ab5-ae4a-44e4-8bbf-301faf36decd)
-
-
-![image](https://github.com/user-attachments/assets/c57381ac-e587-49f0-9f32-b05201f194e3)
-
-
-![image](https://github.com/user-attachments/assets/0f96f990-2b88-4fe7-bc9e-09588b5b15eb)
-
-
-![image](https://github.com/user-attachments/assets/4ab9dec3-d1c4-41f7-8cb8-c564b267686d)
-
-
-![image](https://github.com/user-attachments/assets/250f9caa-f556-44b8-afcd-5f0419ff0052)
-
+This project is a frontend demonstration. Shopping cart functionality is implemented using JavaScript, while checkout and table reservation features are simulated without a backend server or database.
