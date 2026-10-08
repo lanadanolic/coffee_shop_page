@@ -1,0 +1,1164 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700& display=swap');
+
+:root
+{
+    --main-color:#d3ad7f;
+    --black:#13131a;
+    --bg: #010103;
+    --border: .1rem solid rgba(255,255,255,.3);
+}
+
+*{  /*for text*/
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    outline: none;
+    border: none;
+    text-decoration: none;
+    text-transform: capitalize;
+    transition: .2s linear;
+}
+
+html /*for text*/
+{
+   font-size: 62.5%;
+   overflow-x: hidden;
+   scroll-padding-top: 9rem;
+   scroll-behavior: smooth;
+}
+
+html::-webkit-scrollbar
+{
+    width: .8rem;
+}
+
+html::-webkit-scrollbar-track
+{
+    background: transparent;
+}
+
+html::-webkit-scrollbar-thumb
+{
+    background: #fff;
+    border-radius: 5rem;
+}
+
+body
+{
+    background: var(--bg); /*crna pozadina*/
+}
+
+
+
+.header
+{
+    background: var(--bg); /*crna pozadina*/
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.5rem 7%;
+    border-bottom: var(--border); /*linija*/
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+}
+
+.header {
+    position: absolute; /* Ili fixed ako želiš da ostane na vrhu pri skrolanju */
+    top: 10px;  /*pozicija gdje ce se slika nalazit*/
+    left: -40px;
+}
+
+.header .logo img {
+    width: 70px;  /* Postavi željenu širinu loga*/
+    height: auto;  /* Održava proporcije slike */
+}
+
+.header .navbar a
+{
+    margin: 0 1rem;
+    font-size: 1.6rem;
+    color: #fff;
+}
+
+.header .navbar a:hover
+{
+    color:var(--main-color);
+    border-bottom: .1rem solid var(--main-color);
+    padding-bottom: .5rem;
+}
+
+.header .icons div
+{
+  
+   color: #fff;
+   cursor: pointer;
+   font-size: 2rem;
+   margin-left: 2rem;
+}
+
+.header .icons div:hover
+{
+   color: var(--main-color);
+}
+
+#menu-btn
+{
+    display: none; /*da ga ne prikazuje*/
+}
+
+.header .search-form
+{
+    position: absolute;
+    top: 115%;
+    right: 7%;
+    background: #fff;
+    width: 50rem;
+    height: 5rem;
+    display: flex;
+    align-items: center;
+    transform: scaleY(0);
+    transform-origin: top;
+}
+
+.header .search-form.active 
+{
+    transform: scaleY(1);
+}
+
+.header .search-form input
+{
+    height: 100%;
+    width: 100%;
+    font-size: 1.6rem;
+    color: var(--black);
+    padding: 1rem;
+    text-transform: none;
+}
+
+.header .search-form label
+{
+   cursor: pointer;
+   font-size: 2.2rem;
+   margin-right: 1.5rem;
+   color: var(--black);
+}
+
+.header .search-form label:hover
+{
+    color: var(--main-color);
+}
+
+.header .cart-items-container
+{
+    position: absolute;
+    top: 100%;
+    right: -100%; /*da se zatvori*/
+    height: calc(123vh - 9.5rem);
+    width: 27rem;
+    background: #fff;
+    padding: 0 1,5rem;
+}
+
+.header .cart-items-container.active
+{
+    right:0;  /*pop up*/
+}
+
+.header .cart-items-container .cart-item
+{
+    position: relative;
+    margin: 2rem 0;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 5px;
+}
+
+
+.header .cart-items-container .cart-item .fa-times
+{
+   position: absolute;
+   top: 1rem;
+   right: 1rem;
+   font-size: 2rem;
+   cursor: pointer;
+   color: var(--black);
+}
+
+.header .cart-items-container .cart-item .fa-times:hover
+{
+    color: var(--main-color);
+}
+
+.header .cart-items-container .cart-item img {
+    margin-left: 17px;
+    width: 80px; /* Promijeni veličinu slike prema potrebi */
+    height:auto;
+    border-radius: 5px; /* Dodaj blagi zaobljeni efekt ako želiš */
+}
+
+.header .cart-items-container .cart-item .content h3
+{
+    font-size: 2rem;
+    color: var(--black);
+    padding-bottom: .5rem;
+}
+
+.header .cart-items-container .cart-item .content .price
+{
+    font-size: 1.5rem;
+    color: var(--main-color);
+}
+
+.btn
+{
+    margin-top: 1rem;
+    margin-left: 2rem;
+    display: inline-block;
+    padding: 0.9rem 3rem;
+    font-size: 1.7rem;
+    color: #fff;
+    background: var(--main-color);
+    cursor: pointer;
+}
+
+.btn:hover
+{
+    letter-spacing: 0.2rem;
+}
+
+.header .cart-items-container .btn
+{
+    width: 100%;
+    text-align: center;
+}
+
+.home 
+{
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    background: url(../images/home2-img.jpg) no-repeat;
+    background-size: cover;
+    background-position: center;
+
+}
+
+section
+{
+    padding: 2rem 7%;
+
+
+}
+
+.home .content
+{
+    max-width: 60rem;
+}
+
+.home .content h3
+{
+    font-size: 6rem;
+    text-transform: uppercase;
+    color: #fff;
+}
+
+.home .content p
+{
+    font-size: 2rem;
+    font-weight: lighter;
+    line-height: 1.8;
+    padding: 2rem 0;
+    color: #eee;
+}
+
+.heading
+{
+    text-align: center;
+    color: #fff;
+    text-transform: uppercase;
+    padding-bottom: 3.5rem;
+    font-size: 4rem;
+}
+
+.heading span
+{
+    color: var(--main-color);
+    text-transform: uppercase;
+}
+
+.about .row
+{
+    display: flex;
+    align-items: center;
+    background: var(--black);
+    flex-wrap: wrap;
+}
+
+.about .row .image
+{
+    flex: 1 1 45rem;
+}
+
+.about .row .image img
+{
+    width: 100%;
+}
+
+.about .row .content
+{
+    flex: 1 1 45rem;
+    padding: 2rem;
+}
+
+.about .row .content h3
+{
+    font-size: 3rem;
+    color: #fff;
+}
+
+.about .row .content p
+{
+    font-size: 1.6rem;
+    color: #ccc;
+    padding: 1rem 0;
+    line-height: 1.8;
+}
+
+.about .row .content p span
+{
+    font-size: 1.9rem;
+    color: #fff;
+}
+
+.menu .box-container
+{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+    gap: 1.5rem;
+}
+
+.menu .box-container .box
+{
+    padding: 5rem;
+    text-align: center;
+    border: var(--border);
+}
+
+.menu .box-container .box img {
+    height: 15rem;
+    transition: transform 0.3s ease-in-out; /* Smooth transition for the scale effect */
+}
+
+.menu .box-container .box img:hover {
+    transform: scale(1.7); /* Enlarge the image by 20% when hovered */
+}
+
+
+
+.menu .box-container .box h3
+{
+    color: #fff;
+    font-size: 2rem;
+    padding: 1rem 0;
+}
+
+.menu .box-container .box .price
+{
+    color: #fff;
+    font-size: 2.5rem;
+    padding: 0.5rem 0;
+}
+
+.menu .box-container .box .price span
+{
+    
+    font-size: 1.5rem;
+    text-decoration: line-through;
+}
+
+.menu .box-container .box:hover
+{
+    background: #fff;
+
+}
+
+.menu .box-container .box:hover > *
+{
+    color: var(--black);
+    
+}
+
+.products .box-container
+{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+    gap:1.5rem;
+}
+
+.products .box-container .box
+{
+    text-align: center;
+    border: var(--border);
+    padding: 2rem;
+}
+
+.products .box-container .box .icons a
+{
+    height: 5rem;
+    width: 5rem;
+    line-height: 5rem;
+    font-size: 2rem;
+    border: var(--border);
+    color: #fff;
+    margin: 0.3rem;
+}
+
+.products .box-container .box .icons a:hover
+{
+    background: var(--main-color);
+}
+
+.products .box-container .box .image
+{
+    padding: 2.5rem 0;
+}
+
+.products .box-container .box .image img
+{
+    height: 25rem;
+    
+}
+
+.products .box-container .box .content h3
+{
+    color: #fff;
+    font-size: 2.5rem;
+}
+
+.products .box-container .box .content .stars
+{
+    padding: 1.5rem;
+}
+
+.products .box-container .box .content .stars i
+{
+    font-size: 1.7rem;
+    color: var(--main-color);
+}
+
+.products .box-container .box .content .price
+{
+    color: #fff;
+    font-size: 2.5rem;
+}
+
+.products .box-container .box .content .price span
+{
+    text-decoration: line-through;
+    font-weight: lighter;
+    font-size: 1.5rem;
+}
+
+.review .box-container
+{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+    gap:1.5rem;
+}
+
+.review .box-container .box
+{
+    border: var(--border);
+    text-align: center;
+    padding: 3rem 2rem;
+}
+
+.review .box-container .box p
+{
+    font-size: 1.5rem;
+    line-height: 1.8;
+    color: #ccc;
+    padding: 2rem 0;
+
+}
+
+.review .box-container .box .user
+{
+    height: 7rem;
+    width: 7rem;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.review .box-container .box h3
+{
+    padding: 1rem 0;
+    font-size: 2rem;
+    color: #fff;
+}
+
+.review .box-container .box stars i
+{
+    font-size: 1.5rem;
+    color: var(--main-color);
+}
+
+.review .box-container .box .quote
+{
+    height: 7rem;
+    width: 7rem;
+}
+
+.contact .row 
+{
+    display: flex;
+    
+    background: var(--black);
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.contact .row .map
+{
+    flex: 1 1 45rem;
+    width: 100%;
+    object-fit: cover;
+}
+
+.contact .row form
+{
+    flex: 1 1 45rem;
+    padding: 5rem 2rem;
+    text-align: center;
+}
+
+.contact .row form h3
+{
+    text-transform: uppercase;
+    font-size: 3.5rem;
+    color: #fff;
+}
+
+.contact .row form .inputBox
+{
+    display: flex;
+    align-items: center;
+    margin-bottom: 2rem;
+    margin-top: 2rem;
+    background: var(--black);
+    border: var(--border);
+}
+
+.contact .row form .inputBox span
+{
+    color: #fff;
+    font-size: 2rem;
+    padding-left: 2rem;
+}
+
+.contact .row form .inputBox input
+{
+    width: 100%;
+    padding: 2rem;
+    font-size: 1.7rem;
+    color: #fff;
+    text-transform: none;
+    background: none;
+}
+
+
+.blogs .box-container
+{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+    gap: 1.5rem;
+
+}
+
+.blogs .box-container .box
+{
+    border: var(--border);
+}
+
+.blogs .box-container .box .image
+{
+    height: 25rem;
+    overflow: hidden;
+    width: 100%;
+}
+
+.blogs .box-container .box .image img
+{
+    height: 100%;
+    object-fit: cover;
+    width: 100%;
+}
+
+.blogs .box-container .box:hover .image img
+{
+   transform: scale(1.2);
+}
+
+.blogs .box-container .box .content
+{
+    padding: 2rem;
+}
+
+.blogs .box-container .box .content .title
+{
+    font-size: 2.5rem;
+    line-height: 1.5;
+    color: #fff;
+}
+
+.blogs .box-container .box .content .title:hover
+{
+    color: var(--main-color);
+}
+
+.blogs .box-container .box .content span
+{
+    color: var(--main-color);
+    display: block;
+    padding-top: 1rem;
+    font-size: 2rem;
+}
+
+.blogs .box-container .box .content p
+{
+    font-size: 1.6rem;
+    line-height: 1.8;
+    color: #ccc;
+    padding: 1rem 0;
+}
+
+.footer
+{
+    background: var(--black);
+    text-align: center;
+}
+
+.footer .share
+{
+    padding: 1rem 0;
+}
+
+.footer .share a
+{
+    height: 5rem;
+    width: 5rem;
+    line-height: 5rem;
+    font-size: 2rem;
+    color: #fff;
+    border: var(--border);
+    margin: 0.3rem;
+    border-radius: 50%;
+}
+
+.footer .share a:hover
+{
+    background-color: var(--main-color);
+
+}
+
+.footer .links 
+{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 2rem 0;
+    gap: 1rem;
+}
+
+.footer .links a
+{
+    padding: 1rem 2rem;
+    color: #fff;
+    border: var(--border);
+    font-size: 2rem;
+}
+
+.footer .links a:hover
+{
+    background-color: var(--main-color);
+}
+
+.footer .credit
+{
+    font-size: 1.5rem;
+    color: #fff;
+    font-weight: lighter;
+    padding: 1.5rem;
+}
+
+.footer .credit span
+{
+    color: var(--main-color);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*media queries*/
+@media (max-width:991px)
+{
+    html /*for text*/
+   {
+      font-size: 55%;
+      
+   }
+   .header
+   {
+       padding:1.5rem 2rem;
+   }
+   section 
+   {
+    padding:2rem;
+
+   }
+}
+
+@media (max-width:768px)
+{
+    #menu-btn
+    {
+        display: inline-block;
+        
+    }
+
+    .header .navbar
+    {
+        position: absolute;
+        top:100%;
+        right: -100%;  /*da sakrije*/
+        background: #fff;
+        width: 30rem;
+        height: calc(100vh - 9.5rem);
+    }
+
+    .header .navbar.active
+    {
+        right:0;
+    }
+
+    .header .navbar a
+    {
+        color: var(--black);
+        display: block;
+        margin: 1.5rem;
+        padding: 0.5rem;
+        font-size: 2rem;
+    }
+
+    .header .search-form
+    {
+        width: 90%;
+        right: 2rem;
+    }
+
+    .home
+    {
+        background-position: left;
+        justify-content: center;
+        text-align: center;
+    }
+
+    .home .content h3
+    {
+        font-size: 4.5rem;
+    }
+
+    .home .content p
+    {
+        font-size: 1.5rem;
+    }
+
+    
+}
+
+@media (max-width:450px)
+{
+    html /*for text*/
+   {
+      font-size: 50%;
+      
+   }
+   
+}
+
+
+
+
+
+
+/*jdhckdjfhčlfjEQ*/
+.menu .box-container .image {
+    position: relative; /* Omogućava pozicioniranje gumba unutar slike */
+}
+
+.menu .box-container .image .productImage {
+    transition: transform 0.3s ease-in-out;
+    width: 300px;
+    position: relative; /* Održava sliku u ispravnoj poziciji */
+}
+
+
+
+.image {
+    position: relative; /* Osigurava da se close gumb postavlja unutar ovog kontejnera */
+    display: inline-block;
+}
+
+.products .box-container .box .image .close-btn {
+    position: absolute;
+   
+    background: var(--main-color) !important;
+    color: white;
+    font-size: 10px;
+    
+    border-radius: 50%;
+    text-align: center;
+    line-height: 50px;
+    cursor: pointer;
+    z-index: 1000;
+    border: none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.productImage.zoomed {
+    transform: scale(1.8); /* Povećava sliku */
+    transition: transform 0.3s ease-in-out;
+    z-index: 999;
+}
+
+.zoomed {
+    transform: scale(2); /* Uvećava sliku */
+    z-index: 5;
+}
+
+/*SKJFHSJLFWEKFJWEKL*/
+
+.cart-count {
+    font-size: 14px;
+    color: #4d4a4a;
+    margin-top: 10px;
+    display: none;  /* Initially hidden */
+}
+
+.cart-count .count {
+    font-weight: bold;
+    color: #A52A2A; /* Dark red color for count */
+}
+
+/* Style for the Remove button */
+.remove-from-cart {
+    background-color: #A52A2A; /* Red color for Remove button */
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    font-size: 12px;
+    cursor: pointer;
+    border-radius: 0px;
+    margin-left: 10px;
+    display: inline-block;  /* Initially hidden, will be shown when added to cart */
+}
+
+.remove-from-cart:hover {
+    background-color: #A52A2A;  /* Darker red for remove button hover */
+}
+
+.add-to-cart {
+    background-color: var(--); /* Example original color */
+}
+
+
+
+
+/*jdfjkfejlfhekl*/
+#total-price {
+    font-size: 1.5rem; /* Povećaj veličinu fonta */
+    font-weight: bold; /* Povećaj debljinu fonta */
+    color: white; /* Zeleni ton boje za tekst */
+    text-align: center; /* Centriraj tekst */
+    margin-top: 5px; /* Razmak od ostalih elemenata */
+    margin-left: 17px;
+    padding: 10px; /* Unutarnji razmak */
+    background-color: var(--main-color); /* Svijetlo siva pozadina */
+    border-radius: 5px; /* Zaobljeni kutovi */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Blaga sjenka za 3D efekt */
+    display: inline-block; /* Postavi u liniji sa drugim elementima */
+    
+}
+
+/* Dodatni efekti za hover */
+#total-price:hover {
+    background-color: var(--bg); /* Promjena boje pozadine prilikom hovera */
+    color: white; /* Promjena boje teksta na bijelo */
+    transform: scale(1.05); /* Povećanje teksta kada se hovera */
+    transition: all 0.3s ease; /* Glatka tranzicija efekata */
+}
+
+
+
+
+#contact-info {
+    margin-top: 20px;
+    padding: 15px;
+    background: var(--main-color);
+    border-left: 5px white;
+    font-size: 18px;
+    text-align: center;
+    border-radius: 0px;
+}
+
+#contact-info a {
+    text-decoration: none;
+    color: white;
+    font-weight: lighter;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+#contact-info p {
+    
+    color: white;
+    font-weight: lighter;
+}
+
+.hidden {
+    display: none;
+}
+
+.text h3
+{
+    font-weight: 100;
+    font-style:italic;
+    
+ 
+}
+
+
+
+/*//////////////////////////////////*/
+/* Basic styling for the popup */
+.popup-overlay {
+    display: none; /* Hidden by default */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    justify-content: center;
+    align-items: center;
+}
+
+/* Stil za popup koji je skriven po defaultu */
+#checkout-popup {
+    display: none; /* Popup je skriven dok se ne aktivira */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7); /* Poluprozirna pozadina */
+    z-index: 9999;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Popup sadržaj */
+.popup-content {
+    background-color: black;
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 500px;
+    width: 90%;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+/* Skrivanje dugmadi unutar popupa */
+.close-btn {
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: red;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Stil za mobilne uređaje */
+@media (max-width: 600px) {
+    .popup-content {
+        width: 95%; /* Veća širina za mobilne uređaje */
+        padding: 15px; /* Manje paddinga za mobilne uređaje */
+    }
+
+    #checkout-popup {
+        padding: 10px;
+    }
+}
+
+
+.popup-content input {
+    width: 100%;
+    padding: 10px;
+    /*margin: 10px 0;*/
+    margin-top: 5px;
+    margin-bottom: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.popup-content input:hover
+{
+    background-color: var(--main-color);
+    color: white;
+}
+
+.popup-content button {
+    background-color: var(--main-color);
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    margin-left: 10px;
+    margin-top: 20px;
+}
+
+.popup-content button:hover {
+    background-color: white;
+    color: var(--main-color);
+    font-weight: bolder;
+}
+
+.close-btn {
+    background-color: var(--main-color);
+    color: white;
+    padding: 5px;
+    border: none;
+    cursor: pointer;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+
+
+
+/*////////////////////////////////////////////////////////////////////*/
+
+/* Popup Styling */
+.popup-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    align-items: center;
+    justify-content: center;
+}
+
+.popup-content {
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.popup-content h2 {
+    font-size: 1.8em;
+    margin-bottom: 10px;
+}
+
+.popup-content p {
+    font-size: 1.2em;
+    margin-bottom: 20px;
+}
+
+.close-btn {
+    background-color: black;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.close-btn:hover {
+    background-color: var(--main-color);
+}
+
+.form-container {
+    max-width: 500px;
+    margin: 0 auto;
+    background-color: var(--main-color);
+    padding: 20px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+.reservation .form-container .btn
+{
+    color: var(--main-color);
+    background-color: white;
+    border-radius: 10px;
+    margin-left: 2px;
+}
+
+.reservation .form-container .btn:hover
+{
+    color: white;
+    background-color: var(--main-color);
+    border-radius: 10px;
+    margin-left: 2px;
+}
+
+.inputBox {
+    margin-bottom: 15px;
+}
+
+.inputBox label {
+    font-size: 1.1em;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.inputBox input, .inputBox select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1em;
+}
+
+input[type="date"], input[type="time"] {
+    padding-left: 15px;
+}
+
